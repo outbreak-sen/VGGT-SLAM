@@ -77,6 +77,9 @@ class GraphMap:
 
     def write_poses_to_file(self, file_name):
         with open(file_name, "w") as f:
+            f.write("# ground truth trajectory\n")
+            f.write(f"# file: '{file_name}'\n")
+            f.write("# timestamp tx ty tz qx qy qz qw\n")
             for submap in self.ordered_submaps_by_key():
                 poses = submap.get_all_poses_world(ignore_loop_closure_frames=True)
                 frame_ids = submap.get_frame_ids()
